@@ -1,0 +1,17 @@
+def test_extract_island():
+    data = np.arange(30).reshape((5,6))
+    mask = np.zeros((5,6), dtype=bool)
+    mask[1,1] = True
+    mask[4,5] = True
+    mask[3,2] = True
+    
+    t = extract_island((0,0), data, mask)
+    assert np.all(t.mask == [[True, True, True],
+                       [True, False, False],
+                       [True, False, True]])
+    assert t.sum() == 7
+    t = extract_island([4,5], data, mask)
+    assert t.sum() == 73
+    assert np.all(t.mask == [[False, False, True],
+                             [False, True, True],
+                             [True, True, True]])
