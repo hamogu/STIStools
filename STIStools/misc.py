@@ -1,3 +1,5 @@
+import os
+
 def IRAF2filepath(IRAFstring, oref='.'):
     '''Change format of  path to reference file from file header
 
@@ -14,4 +16,4 @@ def IRAF2filepath(IRAFstring, oref='.'):
     filepath : string
         Path and file name
     '''
-    return os.path.join(IRAFstring.replace('oref', oref).split('$'))
+    return os.path.join(*IRAFstring.replace('oref', oref).split('$'))
